@@ -36,7 +36,7 @@
         android:id="@+id/outputTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Output"
+        android:text="Output2"
         app:layout_constraintBottom_toTopOf="@+id/submitBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
