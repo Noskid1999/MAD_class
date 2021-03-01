@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Form1">
+    tools:context=".NameActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_na_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ma_name_txt"
+        android:text="@string/na_name_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
@@ -22,7 +22,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ma_email_txt"
+        android:text="@string/na_email_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.163"
@@ -31,26 +31,26 @@
         app:layout_constraintVertical_bias="0.245" />
 
     <EditText
-        android:id="@+id/inpName"
+        android:id="@+id/et_na_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/ma_name_txt_hint"
+        android:text="@string/na_name_txt_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/tv_na_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.126" />
 
     <EditText
-        android:id="@+id/inpEmail"
+        android:id="@+id/tv_na_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/ma_email_txt_hint"
+        android:inputType="textPersonName|textEmailAddress"
+        android:text="@string/na_email_txt_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.32"
@@ -59,10 +59,10 @@
         app:layout_constraintVertical_bias="0.237" />
 
     <Button
-        android:id="@+id/submitBtn"
+        android:id="@+id/btn_na_submit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ma_submit_btn_txt"
+        android:text="@string/na_submit_btn_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.411"
@@ -71,14 +71,14 @@
         app:layout_constraintVertical_bias="0.128" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_na_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ma_cancel_btn_txt"
+        android:text="@string/na_cancel_btn_txt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.348"
-        app:layout_constraintStart_toEndOf="@+id/submitBtn"
+        app:layout_constraintStart_toEndOf="@+id/btn_na_submit_btn"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.128" />
 </androidx.constraintlayout.widget.ConstraintLayout>
