@@ -7,14 +7,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class ScoreActivity extends AppCompatActivity {
 
     TextView tvName, tvScore;
     Button btnFinish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+
+        String pName = getIntent().getStringExtra("pName");
+        String pEmail = getIntent().getStringExtra("pEmail");
+        int score = getIntent().getIntExtra("score",0);
+
+        setTitle(getResources().getText(R.string.app_name) + ": " + pName);
+
+        tvName = (TextView) findViewById(R.id.tv_sa_name);
+        tvScore = (TextView) findViewById(R.id.tv_sa_score);
+
+        tvName.setText(pName);
+        tvScore.setText(Integer.toString(score));
 
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override

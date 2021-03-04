@@ -13,11 +13,13 @@
     <string name="btn_prev">Previous</string>
 
 
-    <string name="qa_q1">Field of work</string>
-    <string name="qa_q1_opt1">1</string>
-    <string name="qa_q1_opt2">2</string>
-    <string name="qa_q1_opt3">3</string>
-    <string name="qa_q1_opt4">4</string>
+    <string-array name="questions">
+        <item>Which of the following is not a programming language?,Java,PHP,Python,HTML,HTML</item>
+        <item>Which of the following is not a RDBMS?,MySQL,Oracle,Postgres,MongoDB,MongoDB</item>
+        <item>Which of the following is not an OS?,Windows,Linux,Casendra,Ubuntu,Casendra</item>
+        <item>Which of the following language is supported in Android Studio?,Kotlin,PHP,Python,VB,Kotlin</item>
+        <item>Which of the following is not a country?,Nepal,India,China,Paris,Paris</item>
+    </string-array>
 
 
     <string name="btn_finish">Finish</string>

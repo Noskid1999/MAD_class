@@ -27,15 +27,15 @@ public class NameActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent quiz1 = new Intent(NameActivity.this, QuizActivity1.class);
+                Intent quizIntent = new Intent(NameActivity.this, QuizActivity.class);
 
-                String name = etName.toString();
-                String email = etEmail.toString();
+                String name = etName.getText().toString();
+                String email = etEmail.getText().toString();
 
-                quiz1.putExtra("name",name);
-                quiz1.putExtra("email",email);
+                quizIntent.putExtra("pName",name);
+                quizIntent.putExtra("pEmail",email);
 
-                startActivity(quiz1);
+                startActivity(quizIntent);
                 finish();
             }
         });
