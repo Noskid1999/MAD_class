@@ -32,8 +32,14 @@ public class NameActivity extends AppCompatActivity {
                 String name = etName.getText().toString();
                 String email = etEmail.getText().toString();
 
-                quizIntent.putExtra("pName",name);
-                quizIntent.putExtra("pEmail",email);
+                if (name == null || name.length() == 0) {
+                    etName.setError("Name is required");
+                    etName.requestFocus();
+                    return;
+                }
+
+                quizIntent.putExtra("pName", name);
+                quizIntent.putExtra("pEmail", email);
 
                 startActivity(quizIntent);
                 finish();

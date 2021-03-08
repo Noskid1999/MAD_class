@@ -1,9 +1,11 @@
 package com.example.component_1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -20,13 +22,13 @@ public class QuizActivity extends AppCompatActivity {
     RadioButton rbOpt1, rbOpt2, rbOpt3, rbOpt4;
     TextView tvQuestion;
 
-    int currentQuestionIndex;
-    String[] selectedAnswers;
+    int currentQuestionIndex = 0 ;
+    String[] selectedAnswers= new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        Log.d("APP","onCreate() called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
@@ -36,7 +38,6 @@ public class QuizActivity extends AppCompatActivity {
         setTitle(getResources().getText(R.string.app_name) + ": " + pName);
 
         currentQuestionIndex = 0;
-        selectedAnswers = new String[5];
 
         tvQuestion = (TextView) findViewById(R.id.tv_qa_txt);
 
@@ -53,14 +54,26 @@ public class QuizActivity extends AppCompatActivity {
 
         questionList = this.getQuestions();
 
+        if (savedInstanceState != null) {
+            this.selectedAnswers = savedInstanceState.getStringArray("selectedAnswers");
+            this.currentQuestionIndex = savedInstanceState.getInt("currentQuestionIndex", 0);
+        }
+
+
 //      Set the starting question
-        this.displayQuestion(questionList[currentQuestionIndex]);
+        this.displayQuestion(currentQuestionIndex);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 int answerId = rgQuiz.getCheckedRadioButtonId();
+
+                if(answerId==-1){
+                    tvQuestion.setError("Please select an option");
+                    return;
+                }
+
                 RadioButton answer = (RadioButton) findViewById(answerId);
 
                 selectedAnswers[currentQuestionIndex] = answer.getText().toString();
@@ -76,10 +89,19 @@ public class QuizActivity extends AppCompatActivity {
                     finish();
                 } else {
                     currentQuestionIndex++;
-                    displayQuestion(questionList[currentQuestionIndex]);
+                    displayQuestion(currentQuestionIndex);
                 }
             }
 
+        });
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentQuestionIndex!=0){
+                    currentQuestionIndex--;
+                    displayQuestion(currentQuestionIndex);
+                }
+            }
         });
     }
 
@@ -96,7 +118,10 @@ public class QuizActivity extends AppCompatActivity {
         return questionList;
     }
 
-    void displayQuestion(String[] question) {
+    void displayQuestion(int reqQuestionIndex) {
+//        Get the required question
+        String[] question = questionList[reqQuestionIndex];
+//        Set the question and answers text in the radio group and btn
         tvQuestion.setText(question[0]);
 
         rbOpt1.setText(question[1]);
@@ -104,7 +129,21 @@ public class QuizActivity extends AppCompatActivity {
         rbOpt3.setText(question[3]);
         rbOpt4.setText(question[4]);
 
+//        Clear the previous selected option and reset the error if set
         rgQuiz.clearCheck();
+        tvQuestion.setError(null);
+
+//        Set preselected answer
+        if(selectedAnswers[reqQuestionIndex]!=null){
+            for(int i = 1; i<=4;i++){
+//                if ans matches, check the current answer
+                if(question[i].equals(selectedAnswers[reqQuestionIndex])){
+                    ((RadioButton)rgQuiz.getChildAt(i-1)).setChecked(true);
+                    break;
+                }
+            }
+        }
+
     }
 
     protected int getScore() {
@@ -115,5 +154,14 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
         return score;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d("APP","OnState() called");
+//        Save the state of the question i.e. the current index of the question
+        outState.putInt("currentQuestionIndex", currentQuestionIndex);
+        outState.putStringArray("selectedAnswers",selectedAnswers);
     }
 }
