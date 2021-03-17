@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 public class NameActivity extends AppCompatActivity {
     Button startBtn, cancelBtn;
-    EditText etName, etEmail;
+    EditText etName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,6 @@ public class NameActivity extends AppCompatActivity {
         cancelBtn = (Button) findViewById(R.id.btn_na_cancel_btn);
 
         etName = (EditText) findViewById(R.id.et_na_name);
-        etEmail = (EditText) findViewById(R.id.tv_na_email);
 
 
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -30,7 +29,6 @@ public class NameActivity extends AppCompatActivity {
                 Intent quizIntent = new Intent(NameActivity.this, QuizActivity.class);
 
                 String name = etName.getText().toString();
-                String email = etEmail.getText().toString();
 
                 if (name == null || name.length() == 0) {
                     etName.setError("Name is required");
@@ -39,7 +37,6 @@ public class NameActivity extends AppCompatActivity {
                 }
 
                 quizIntent.putExtra("pName", name);
-                quizIntent.putExtra("pEmail", email);
 
                 startActivity(quizIntent);
                 finish();

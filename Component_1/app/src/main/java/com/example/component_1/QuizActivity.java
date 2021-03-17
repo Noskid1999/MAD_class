@@ -22,11 +22,10 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<Question> questionList;
 
     RadioButton[] rbList = new RadioButton[4];
-    //    RadioButton rbOpt1, rbOpt2, rbOpt3, rbOpt4;
-    TextView tvQuestion;
+    TextView tvQuestion, tvQuestionCount;
 
     int currentQuestionIndex = 0;
-    String[] selectedAnswers = new String[5];
+    String[] selectedAnswers = new String[getResources().getStringArray(R.array.questions).length];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +33,15 @@ public class QuizActivity extends AppCompatActivity {
         Log.d("APP", "onCreate() called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+//      Get the name and the email from the name activity intent
         String pName = getIntent().getStringExtra("pName");
-        String pEmail = getIntent().getStringExtra("pEmail");
 
         setTitle(getResources().getText(R.string.app_name) + ": " + pName);
-
+//      Default the question index to 0 and change as required
         currentQuestionIndex = 0;
-
+//      Get the reference to all the required fields in the quiz
         tvQuestion = (TextView) findViewById(R.id.tv_qa_txt);
+        tvQuestionCount = (TextView) findViewById(R.id.tv_qa_questionCount);
 
         rgQuiz = (RadioGroup) findViewById(R.id.rg_qa);
         rbList[0] = (RadioButton) findViewById(R.id.rb_qa_opt1);
@@ -52,9 +51,9 @@ public class QuizActivity extends AppCompatActivity {
 
         btnNext = (Button) findViewById(R.id.btn_qa_next);
         btnPrev = (Button) findViewById(R.id.btn_qa_previous);
-
+//      Get the list of question
         questionList = this.getQuestions();
-
+//      Check if there is a saved instance state. If present, recover the state of the app
         if (savedInstanceState != null) {
             this.selectedAnswers = savedInstanceState.getStringArray("selectedAnswers");
             this.currentQuestionIndex = savedInstanceState.getInt("currentQuestionIndex", 0);
@@ -63,32 +62,34 @@ public class QuizActivity extends AppCompatActivity {
 
 //      Set the starting question
         this.displayQuestion(currentQuestionIndex);
-
+//      Set the onclick lister for the next and the previous buttons
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//              Get the ID of the radio button from the radio group of the quiz
                 int answerId = rgQuiz.getCheckedRadioButtonId();
-
+//              Allow to proceed forward only if the user has selected an option.
                 if (answerId == -1) {
                     tvQuestion.setError("Please select an option");
                     return;
                 }
-
+//              Get the selected radio button
                 RadioButton answer = (RadioButton) findViewById(answerId);
-
+//              Set the answer in the selected answer arr.
                 selectedAnswers[currentQuestionIndex] = answer.getText().toString();
-
-                if (currentQuestionIndex == 4) {
+//              End of the quiz
+                if (currentQuestionIndex == (questionList.size()-1)) {
+//                  Create an intent to pass to the score activity
                     Intent scoreIntent = new Intent(QuizActivity.this, ScoreActivity.class);
-
+//                  Put the name and score to the intent and start the intent
                     scoreIntent.putExtra("pName", pName);
-                    scoreIntent.putExtra("pEmail", pEmail);
                     scoreIntent.putExtra("score", getScore());
 
                     startActivity(scoreIntent);
                     finish();
-                } else {
+                }
+//              If not end of the quiz, continue to next question
+                else {
                     currentQuestionIndex++;
                     displayQuestion(currentQuestionIndex);
                 }
@@ -98,6 +99,7 @@ public class QuizActivity extends AppCompatActivity {
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Go to previous only if not the first question
                 if (currentQuestionIndex != 0) {
                     currentQuestionIndex--;
                     displayQuestion(currentQuestionIndex);
@@ -106,12 +108,17 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Parses the questions from the string.xml and creates a question array list
+     * @return Arraylist of questions
+     */
     protected ArrayList<Question> getQuestions() {
         ArrayList<Question> questionList = new ArrayList<Question>();
-
+//      Get the questions array from the string.xml
         String[] questions = getResources().getStringArray(R.array.questions);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < questions.length; i++) {
+//            Split the questions using required delimiter, here ","
             String[] split = questions[i].split(",");
 
             questionList.add(new Question(split.clone()));
@@ -119,12 +126,18 @@ public class QuizActivity extends AppCompatActivity {
         return questionList;
     }
 
+    /**
+     *  Displays the required question along with options
+     * @param reqQuestionIndex Current question index among the questions
+     */
     void displayQuestion(int reqQuestionIndex) {
 //        Get the required question
         Question question = questionList.get(reqQuestionIndex);
+//        Set the question count
+        tvQuestionCount.setText("Question " + (reqQuestionIndex + 1) + "/ " + questionList.size());
 //        Set the question and answers text in the radio group and btn
         tvQuestion.setText(question.getQuestion());
-//      Set options
+//      Set options in the RadioButtons
         for (int i = 0; i < 4; i++) {
             rbList[i].setText(question.getOptionList().get(i));
         }
@@ -133,11 +146,11 @@ public class QuizActivity extends AppCompatActivity {
         rgQuiz.clearCheck();
         tvQuestion.setError(null);
 
-//        Set preselected answer
+//        Set preselected answer if present
         if (selectedAnswers[reqQuestionIndex] != null) {
             for (int i = 0; i < 4; i++) {
 //                if ans matches, set check/mark the current answer
-                if (question.getOptionList().get(0).equals(selectedAnswers[reqQuestionIndex])) {
+                if (question.getOptionList().get(i).equals(selectedAnswers[reqQuestionIndex])) {
                     ((RadioButton) rgQuiz.getChildAt(i)).setChecked(true);
                     break;
                 }
@@ -146,9 +159,13 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Get the score from the selected answers
+     * @return Score of the user
+     */
     protected int getScore() {
         int score = 0;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < questionList.size(); i++) {
             if (questionList.get(i).getAnswer().equals(selectedAnswers[i])) {
                 score++;
             }

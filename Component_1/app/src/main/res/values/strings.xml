@@ -1,11 +1,9 @@
 <resources>
-    <string name="app_name">Component_1</string>
+    <string name="app_name">Quiz App</string>
     <string name="ma_welcome_text">Welcome to the Quiz App</string>
     <string name="ma_start_btn">Start</string>
     <string name="na_name_txt">Name</string>
     <string name="na_name_txt_hint">Enter your name</string>
-    <string name="na_email_txt">Email</string>
-    <string name="na_email_txt_hint">Enter your email</string>
     <string name="na_submit_btn_txt">Submit</string>
     <string name="na_cancel_btn_txt">Cancel</string>
 

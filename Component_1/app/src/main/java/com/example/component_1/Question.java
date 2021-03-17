@@ -1,5 +1,7 @@
 package com.example.component_1;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Question {
@@ -8,14 +10,15 @@ public class Question {
     private String answer;
 
     public Question(String[] question){
+        Log.d("Test",question[0]);
         this.question = question[0];
-
-        this.optionList.add(question[0]);
+        this.optionList = new ArrayList<String>();
         this.optionList.add(question[1]);
         this.optionList.add(question[2]);
         this.optionList.add(question[3]);
+        this.optionList.add(question[4]);
 
-        this.answer = question[4];
+        this.answer = question[5];
     }
 
     public String getQuestion() {
