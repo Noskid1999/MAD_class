@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Component1_2</string>
+    <string name="btn1_txt">Inner Class/ Toast</string>
+    <string name="btn2_txt">Void Method/ Increase Count</string>
+</resources>
