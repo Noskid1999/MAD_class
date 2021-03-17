@@ -4,11 +4,11 @@
     <string name="ma_start_btn">Start</string>
     <string name="na_name_txt">Name</string>
     <string name="na_name_txt_hint">Enter your name</string>
-    <string name="na_submit_btn_txt">Submit</string>
+    <string name="na_submit_btn_txt">Start Quiz</string>
     <string name="na_cancel_btn_txt">Cancel</string>
 
-    <string name="btn_next">Next</string>
-    <string name="btn_prev">Previous</string>
+    <string name="qa_btn_next">Next</string>
+    <string name="qa_btn_prev">Previous</string>
 
 
     <string-array name="questions">
@@ -19,8 +19,11 @@
         <item>Which of the following is not a country?,Nepal,India,China,Paris,Paris</item>
     </string-array>
 
+    <string name="sa_header">Quiz Result</string>
+    <string name="sa_result_txt">YOUR SCORE</string>
+    <string name="sa_btn_restart">Restart</string>
+    <string name="sa_btn_finish">Finish</string>
 
-    <string name="btn_finish">Finish</string>
 
 
 </resources>

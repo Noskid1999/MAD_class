@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/rb_background"
-                    android:text="@string/btn_prev" />
+                    android:text="@string/qa_btn_prev" />
 
                 <Button
                     android:id="@+id/btn_qa_next"
@@ -141,7 +141,7 @@
                     android:layout_margin="5dp"
                     android:background="@drawable/rb_background"
                     android:baselineAligned="false"
-                    android:text="@string/btn_next"
+                    android:text="@string/qa_btn_next"
                     app:backgroundTint="#28A745" />
 
             </LinearLayout>

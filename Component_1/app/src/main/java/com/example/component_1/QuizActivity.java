@@ -91,6 +91,7 @@ public class QuizActivity extends AppCompatActivity {
 //                  Put the name and score to the intent and start the intent
                     scoreIntent.putExtra("pName", pName);
                     scoreIntent.putExtra("score", getScore());
+                    scoreIntent.putExtra("totalCount", questionList.size());
 
                     startActivity(scoreIntent);
                     finish();
