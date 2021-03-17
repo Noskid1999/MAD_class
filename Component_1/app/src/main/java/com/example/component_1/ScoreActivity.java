@@ -22,13 +22,14 @@ public class ScoreActivity extends AppCompatActivity {
 
 
         String pName = getIntent().getStringExtra("pName");
-        String pEmail = getIntent().getStringExtra("pEmail");
         int score = getIntent().getIntExtra("score",0);
 
         setTitle(getResources().getText(R.string.app_name) + ": " + pName);
 
         tvName = (TextView) findViewById(R.id.tv_sa_name);
         tvScore = (TextView) findViewById(R.id.tv_sa_score);
+
+        btnFinish = (Button)findViewById(R.id.btn_sa_finish);
 
         tvName.setText(pName);
         tvScore.setText(Integer.toString(score));

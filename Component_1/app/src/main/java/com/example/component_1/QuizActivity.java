@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -24,8 +26,10 @@ public class QuizActivity extends AppCompatActivity {
     RadioButton[] rbList = new RadioButton[4];
     TextView tvQuestion, tvQuestionCount;
 
+    ScrollView quizScroll;
+
     int currentQuestionIndex = 0;
-    String[] selectedAnswers = new String[getResources().getStringArray(R.array.questions).length];
+    ArrayList<String> selectedAnswers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class QuizActivity extends AppCompatActivity {
 //      Get the reference to all the required fields in the quiz
         tvQuestion = (TextView) findViewById(R.id.tv_qa_txt);
         tvQuestionCount = (TextView) findViewById(R.id.tv_qa_questionCount);
+        quizScroll = (ScrollView) findViewById(R.id.sv_qa_quizScroll);
 
         rgQuiz = (RadioGroup) findViewById(R.id.rg_qa);
         rbList[0] = (RadioButton) findViewById(R.id.rb_qa_opt1);
@@ -55,8 +60,10 @@ public class QuizActivity extends AppCompatActivity {
         questionList = this.getQuestions();
 //      Check if there is a saved instance state. If present, recover the state of the app
         if (savedInstanceState != null) {
-            this.selectedAnswers = savedInstanceState.getStringArray("selectedAnswers");
+            this.selectedAnswers = (ArrayList<String>) Arrays.asList(savedInstanceState.getStringArray("selectedAnswers"));
             this.currentQuestionIndex = savedInstanceState.getInt("currentQuestionIndex", 0);
+        } else {
+            for (int i = 0; i < questionList.size(); i++) selectedAnswers.add(null);
         }
 
 
@@ -76,9 +83,9 @@ public class QuizActivity extends AppCompatActivity {
 //              Get the selected radio button
                 RadioButton answer = (RadioButton) findViewById(answerId);
 //              Set the answer in the selected answer arr.
-                selectedAnswers[currentQuestionIndex] = answer.getText().toString();
+                selectedAnswers.set(currentQuestionIndex, answer.getText().toString());
 //              End of the quiz
-                if (currentQuestionIndex == (questionList.size()-1)) {
+                if (currentQuestionIndex == (questionList.size() - 1)) {
 //                  Create an intent to pass to the score activity
                     Intent scoreIntent = new Intent(QuizActivity.this, ScoreActivity.class);
 //                  Put the name and score to the intent and start the intent
@@ -110,6 +117,7 @@ public class QuizActivity extends AppCompatActivity {
 
     /**
      * Parses the questions from the string.xml and creates a question array list
+     *
      * @return Arraylist of questions
      */
     protected ArrayList<Question> getQuestions() {
@@ -127,7 +135,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     /**
-     *  Displays the required question along with options
+     * Displays the required question along with options
+     *
      * @param reqQuestionIndex Current question index among the questions
      */
     void displayQuestion(int reqQuestionIndex) {
@@ -141,16 +150,17 @@ public class QuizActivity extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
             rbList[i].setText(question.getOptionList().get(i));
         }
-
+//      Refocus to the top
+        quizScroll.fullScroll(ScrollView.FOCUS_UP);
 //        Clear the previous selected option and reset the error if set
         rgQuiz.clearCheck();
         tvQuestion.setError(null);
 
 //        Set preselected answer if present
-        if (selectedAnswers[reqQuestionIndex] != null) {
+        if (selectedAnswers.size() > 0 && selectedAnswers.get(reqQuestionIndex) != null) {
             for (int i = 0; i < 4; i++) {
 //                if ans matches, set check/mark the current answer
-                if (question.getOptionList().get(i).equals(selectedAnswers[reqQuestionIndex])) {
+                if (question.getOptionList().get(i).equals(selectedAnswers.get(reqQuestionIndex))) {
                     ((RadioButton) rgQuiz.getChildAt(i)).setChecked(true);
                     break;
                 }
@@ -161,12 +171,13 @@ public class QuizActivity extends AppCompatActivity {
 
     /**
      * Get the score from the selected answers
+     *
      * @return Score of the user
      */
     protected int getScore() {
         int score = 0;
         for (int i = 0; i < questionList.size(); i++) {
-            if (questionList.get(i).getAnswer().equals(selectedAnswers[i])) {
+            if (questionList.get(i).getAnswer().equals(selectedAnswers.get(i))) {
                 score++;
             }
         }
@@ -179,6 +190,6 @@ public class QuizActivity extends AppCompatActivity {
         Log.d("APP", "OnState() called");
 //        Save the state of the question i.e. the current index of the question
         outState.putInt("currentQuestionIndex", currentQuestionIndex);
-        outState.putStringArray("selectedAnswers", selectedAnswers);
+        outState.putStringArray("selectedAnswers", selectedAnswers.toArray(new String[selectedAnswers.size()]));
     }
 }

@@ -6,135 +6,147 @@
     android:layout_height="match_parent"
     tools:context=".QuizActivity">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/sv_qa_quizScroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/tv_qa_questionCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_qa_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:justificationMode="inter_word"
-            android:padding="20dp"
-            android:textColor="#000000"
-            android:textSize="21sp" />
-
-        <RadioGroup
-            android:id="@+id/rg_qa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rb_qa_opt1"
-                style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rb_background"
-                android:checked="false"
-                android:layoutDirection="rtl"
-                android:padding="10dp"
-                android:textAlignment="textStart" />
-
-            <RadioButton
-                android:id="@+id/rb_qa_opt2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rb_background"
-                android:layoutDirection="rtl"
-                android:padding="10dp"
-                android:textAlignment="textStart" />
-
-            <RadioButton
-                android:id="@+id/rb_qa_opt3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rb_background"
-                android:layoutDirection="rtl"
-                android:padding="10dp"
-                android:textAlignment="textStart" />
-
-            <RadioButton
-                android:id="@+id/rb_qa_opt4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rb_background"
-                android:layoutDirection="rtl"
-                android:padding="10dp"
-                android:textAlignment="textStart" />
-        </RadioGroup>
-
+        app:layout_constraintVertical_bias="0.219">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-            <Button
-                android:id="@+id/btn_qa_previous"
-                android:layout_width="150dp"
+            <TextView
+                android:id="@+id/tv_qa_questionCount"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/rb_background"
-                android:text="@string/btn_prev" />
+                android:layout_marginTop="30dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/btn_qa_next"
-                android:layout_width="150dp"
+            <TextView
+                android:id="@+id/tv_qa_txt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/rb_background"
-                android:baselineAligned="false"
-                android:text="@string/btn_next"
-                app:backgroundTint="#28A745" />
+                android:layout_marginTop="10dp"
+                android:justificationMode="inter_word"
+                android:padding="20dp"
+                android:textColor="#000000"
+                android:textSize="21sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_qa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rb_qa_opt1"
+                    style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rb_background"
+                    android:checked="false"
+                    android:layoutDirection="rtl"
+                    android:padding="10dp"
+                    android:textAlignment="textStart" />
+
+                <RadioButton
+                    android:id="@+id/rb_qa_opt2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rb_background"
+                    android:layoutDirection="rtl"
+                    android:padding="10dp"
+                    android:textAlignment="textStart" />
+
+                <RadioButton
+                    android:id="@+id/rb_qa_opt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rb_background"
+                    android:layoutDirection="rtl"
+                    android:padding="10dp"
+                    android:textAlignment="textStart" />
+
+                <RadioButton
+                    android:id="@+id/rb_qa_opt4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rb_background"
+                    android:layoutDirection="rtl"
+                    android:padding="10dp"
+                    android:textAlignment="textStart" />
+            </RadioGroup>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_qa_previous"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rb_background"
+                    android:text="@string/btn_prev" />
+
+                <Button
+                    android:id="@+id/btn_qa_next"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rb_background"
+                    android:baselineAligned="false"
+                    android:text="@string/btn_next"
+                    app:backgroundTint="#28A745" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
