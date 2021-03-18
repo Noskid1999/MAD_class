@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -60,7 +61,8 @@ public class QuizActivity extends AppCompatActivity {
         questionList = this.getQuestions();
 //      Check if there is a saved instance state. If present, recover the state of the app
         if (savedInstanceState != null) {
-            this.selectedAnswers = (ArrayList<String>) Arrays.asList(savedInstanceState.getStringArray("selectedAnswers"));
+            List<String> test = Arrays.asList(savedInstanceState.getStringArray("selectedAnswers"));
+            this.selectedAnswers = new ArrayList<String>(test);
             this.currentQuestionIndex = savedInstanceState.getInt("currentQuestionIndex", 0);
         } else {
             for (int i = 0; i < questionList.size(); i++) selectedAnswers.add(null);

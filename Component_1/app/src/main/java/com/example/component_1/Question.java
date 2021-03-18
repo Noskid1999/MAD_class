@@ -10,7 +10,6 @@ public class Question {
     private String answer;
 
     public Question(String[] question){
-        Log.d("Test",question[0]);
         this.question = question[0];
         this.optionList = new ArrayList<String>();
         this.optionList.add(question[1]);
