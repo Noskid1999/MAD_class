@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">TodoApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="et_fta_title_placeholder">Enter Title of the task</string>
+    <string name="et_fta_description_placeholder">Enter Description of the task</string>
+
+    <string name="tv_fta_priority_placeholder">Select Priority of the task</string>
+    <string name="rb_fta_priority_high">High</string>
+    <string name="rb_fta_priority_medium">Medium</string>
+    <string name="rb_fta_priority_low">Low</string>
+
+
+    <string name="btn_fta_addTodo">Add Task</string>
+
 </resources>
