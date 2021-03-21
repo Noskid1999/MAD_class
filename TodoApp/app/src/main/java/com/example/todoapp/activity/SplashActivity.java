@@ -1,8 +1,10 @@
-package com.example.todoapp;
+package com.example.todoapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.todoapp.R;
 
 public class SplashActivity extends AppCompatActivity {
 

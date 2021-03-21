@@ -1,10 +1,13 @@
-package com.example.todoapp;
+package com.example.todoapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+
+import com.example.todoapp.R;
+import com.example.todoapp.fragment.TodoListFragment;
 
 public class MainActivity extends AppCompatActivity {
 

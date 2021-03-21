@@ -1,4 +1,4 @@
-package com.example.todoapp;
+package com.example.todoapp.fragment;
 
 import android.os.Bundle;
 
@@ -13,7 +13,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.todoapp.model.ETodo;
+import com.example.todoapp.R;
+import com.example.todoapp.database.model.ETodo;
 
 public class TodoAddFragment extends Fragment {
 
@@ -32,7 +33,6 @@ public class TodoAddFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
 //    public static TodoAddFragment newInstance(String param1, String param2) {
 //        TodoAddFragment fragment = new TodoAddFragment();
 //        Bundle args = new Bundle();

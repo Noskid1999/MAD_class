@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodoAddFragment">
+    tools:context=".fragment.TodoAddFragment">
 
     <EditText
         android:id="@+id/et_fta_title"
