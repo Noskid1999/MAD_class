@@ -3,6 +3,7 @@ package com.example.todoapp.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +17,13 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.todoapp.R;
+import com.example.todoapp.adapter.TodoAdapter;
 import com.example.todoapp.database.model.ETodo;
 import com.example.todoapp.viewModel.TodoViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 //TODO: Get the list of todo tasks
 public class TodoFragment extends ListFragment {
@@ -61,6 +64,15 @@ public class TodoFragment extends ListFragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rvTodoList.setLayoutManager(llm);
 
+//      Set todo list change observer
+        viewModel.getAllTodos().observe(this, new Observer<List<ETodo>>() {
+            @Override
+            public void onChanged(List<ETodo> todoList) {
+                TodoAdapter adapter = new TodoAdapter(todoList);
+                rvTodoList.setAdapter(adapter);
+            }
+        });
+
         return rootView;
 
 //        HashMap<String, String> map = new HashMap<>();
@@ -88,11 +100,11 @@ public class TodoFragment extends ListFragment {
 
         super.onStart();
 
-        getListView().setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), data.get(position).get("title"), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        getListView().setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getActivity(), data.get(position).get("title"), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

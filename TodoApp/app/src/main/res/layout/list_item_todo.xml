@@ -6,14 +6,14 @@
 
 
     <TextView
-        android:id="@+id/tv_ft_taskTitle"
+        android:id="@+id/tv_lit_taskTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/tv_ft_taskPriority"
+        android:id="@+id/tv_lit_taskDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
