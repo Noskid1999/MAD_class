@@ -29,11 +29,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull TodoHolder holder, int position) {
-
+        ETodo eTodo = eTodoList.get(position);
+        holder.bind(eTodo);
     }
 
     @Override
     public int getItemCount() {
         return eTodoList.size();
     }
+
+
 }
