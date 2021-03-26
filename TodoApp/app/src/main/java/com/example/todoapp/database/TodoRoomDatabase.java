@@ -11,7 +11,7 @@ import com.example.todoapp.database.model.ETodo;
 
 @Database(entities = {ETodo.class}, version = 1, exportSchema = false)
 public abstract class TodoRoomDatabase extends RoomDatabase {
-    public static final String DB_NAME = "room";
+    public static final String DB_NAME = "todo";
     public static TodoRoomDatabase INSTANCE;
 
     public static synchronized TodoRoomDatabase getInstance(Context context) {

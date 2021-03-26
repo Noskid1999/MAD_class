@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.todoapp.util.DateConverter;
 
 import java.util.Date;
 
@@ -36,6 +39,7 @@ public class ETodo {
     @ColumnInfo(name = "status")
     int status;
 
+    @TypeConverters(DateConverter.class)
     @ColumnInfo(name = "taskDate")
     Date taskDate;
 

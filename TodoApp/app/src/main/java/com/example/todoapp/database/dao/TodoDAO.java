@@ -1,12 +1,16 @@
 package com.example.todoapp.database.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.todoapp.database.model.ETodo;
+
+import java.util.List;
 
 @Dao
 public interface TodoDAO {
@@ -16,9 +20,13 @@ public interface TodoDAO {
     @Delete
     void delete(int id);
 
-    @Update
-    void update(ETodo task);
-
     @Query("SELECT * FROM etodo WHERE id = :id")
     ETodo get(int id);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update(ETodo... todo);
+
+    @Query("SELECT * FROM etodo ORDER BY taskDate, priority desc")
+    LiveData<List<ETodo>> getAllTodos();
+
 }

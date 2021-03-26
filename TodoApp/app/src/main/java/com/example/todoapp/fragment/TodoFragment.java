@@ -3,6 +3,9 @@ package com.example.todoapp.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +17,20 @@ import android.widget.Toast;
 
 import com.example.todoapp.R;
 import com.example.todoapp.database.model.ETodo;
+import com.example.todoapp.viewModel.TodoViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 //TODO: Get the list of todo tasks
 public class TodoFragment extends ListFragment {
+    RecyclerView rvTodoList;
+    TodoViewModel viewModel;
+    View rootView;
     public final Integer PRIORITY_HIGH = 1, PRIORITY_MEDIUM = 2, PRIORITY_LOW = 3;
 
     public HashMap<Integer, String> priorityStringMap;
-    public HashMap<Integer, String> priorityColorMap;
+    public HashMap<Integer, Integer> priorityColorMap;
 
     ETodo[] todoList;
 
@@ -35,33 +43,44 @@ public class TodoFragment extends ListFragment {
         priorityStringMap.put(PRIORITY_LOW, "Low");
 
 
-        priorityColorMap.put(PRIORITY_HIGH, "#DC3545");
-        priorityColorMap.put(PRIORITY_MEDIUM, "#FFC107");
-        priorityColorMap.put(PRIORITY_LOW, "#28A745");
+        priorityColorMap.put(PRIORITY_HIGH, R.color.danger);
+        priorityColorMap.put(PRIORITY_MEDIUM, R.color.warning);
+        priorityColorMap.put(PRIORITY_LOW, R.color.success);
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        HashMap<String, String> map = new HashMap<>();
 
-        for (int i = 0; i < todoList.length; i++) {
-            map = new HashMap<>();
-            map.put("title", todoList[i].getTitle());
-            map.put("priority", priorityStringMap.get(todoList[i].getPriority()));
+        rootView = inflater.inflate(R.layout.list_item_todo, container, false);
+        rvTodoList = rootView.findViewById(R.id.rv_ftl_todoListContainer);
+        viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
 
-            data.add(map);
-        }
+        LinearLayoutManager llm = new LinearLayoutManager((getActivity()));
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rvTodoList.setLayoutManager(llm);
 
-        String[] from = {"title", "priority"};
-        int[] to = {R.id.tv_ft_taskTitle, R.id.tv_ft_taskPriority};
+        return rootView;
 
-        adapter = new SimpleAdapter(getActivity(), data, R.layout.fragment_todo, from, to);
-        setListAdapter(adapter);
-
-
-        return super.onCreateView(inflater, container, savedInstanceState);
+//        HashMap<String, String> map = new HashMap<>();
+//
+//        for (int i = 0; i < todoList.length; i++) {
+//            map = new HashMap<>();
+//            map.put("title", todoList[i].getTitle());
+//            map.put("priority", priorityStringMap.get(todoList[i].getPriority()));
+//
+//            data.add(map);
+//        }
+//
+//        String[] from = {"title", "priority"};
+//        int[] to = {R.id.tv_ft_taskTitle, R.id.tv_ft_taskPriority};
+//
+//        adapter = new SimpleAdapter(getActivity(), data, R.layout.list_item_todo, from, to);
+//        setListAdapter(adapter);
+//
+//
+//        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override

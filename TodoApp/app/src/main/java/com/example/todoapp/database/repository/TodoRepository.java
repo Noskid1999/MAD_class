@@ -3,16 +3,22 @@ package com.example.todoapp.database.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.todoapp.database.TodoRoomDatabase;
 import com.example.todoapp.database.dao.TodoDAO;
 import com.example.todoapp.database.model.ETodo;
 
+import java.util.List;
+
 public class TodoRepository {
     private TodoDAO mTodoDAO;
+    private LiveData<List<ETodo>> allTodoList;
 
     public TodoRepository(Application application) {
         TodoRoomDatabase database = TodoRoomDatabase.getInstance(application);
         mTodoDAO = database.mTodoDAO();
+        allTodoList = mTodoDAO.getAllTodos();
     }
 
     public TodoDAO getmTodoDAO() {
@@ -21,6 +27,14 @@ public class TodoRepository {
 
     public void setmTodoDAO(TodoDAO mTodoDAO) {
         this.mTodoDAO = mTodoDAO;
+    }
+
+    public LiveData<List<ETodo>> getAllTodoList() {
+        return allTodoList;
+    }
+
+    public void setAllTodoList(LiveData<List<ETodo>> allTodoList) {
+        this.allTodoList = allTodoList;
     }
 
     public void insert(ETodo eTodo){

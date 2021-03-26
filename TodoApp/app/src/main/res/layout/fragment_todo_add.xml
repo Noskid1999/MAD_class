@@ -102,12 +102,35 @@
         android:id="@+id/btn_fta_addTodo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
         app:backgroundTint="@color/success"
-        app:layout_constraintEnd_toEndOf="@+id/cv_fta_todoDate"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/cv_fta_todoDate"
-        app:layout_constraintTop_toBottomOf="@+id/cv_fta_todoDate"
+        app:layout_constraintEnd_toEndOf="@+id/cb_fta_isComplete"
+        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintStart_toStartOf="@+id/cb_fta_isComplete"
+        app:layout_constraintTop_toBottomOf="@+id/cb_fta_isComplete"
         tools:text="@string/btn_fta_addTodo" />
+
+    <CheckBox
+        android:id="@+id/cb_fta_isComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_fta_isComplete"
+        app:layout_constraintEnd_toEndOf="@+id/cv_fta_todoDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/cv_fta_todoDate"
+        app:layout_constraintTop_toBottomOf="@+id/cv_fta_todoDate" />
+
+    <Button
+        android:id="@+id/btn_fta_cancelTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="@+id/cb_fta_isComplete"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_fta_addTodo"
+        app:layout_constraintTop_toBottomOf="@+id/cb_fta_isComplete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

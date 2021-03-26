@@ -10,6 +10,8 @@
     <string name="rb_fta_priority_medium">Medium</string>
     <string name="rb_fta_priority_low">Low</string>
 
+    <string name="cb_fta_isComplete">Task is complete?</string>
+
 
     <string name="btn_fta_addTodo">Add Task</string>
 
