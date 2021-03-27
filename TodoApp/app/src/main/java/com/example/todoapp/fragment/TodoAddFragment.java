@@ -26,6 +26,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class TodoAddFragment extends Fragment {
     View view;
@@ -69,7 +70,7 @@ public class TodoAddFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                saveTodo();
 
             }
         });
@@ -104,16 +105,14 @@ public class TodoAddFragment extends Fragment {
         description = etDescription.getText().toString();
 
 
-        RadioButton rbPriority = (RadioButton) view.findViewById(rgPriority.getCheckedRadioButtonId());
-
-        switch (rbPriority.getText().toString()) {
-            case "High":
+        switch (rgPriority.getCheckedRadioButtonId()) {
+            case R.id.rb_fta_priority_high:
                 priority = HIGH_PRIORITY;
                 break;
-            case "Medium":
+            case R.id.rb_fta_priority_medium:
                 priority = MEDIUM_PRIORITY;
                 break;
-            case "Low":
+            case R.id.rb_fta_priority_low:
                 priority = LOW_PRIORITY;
                 break;
         }

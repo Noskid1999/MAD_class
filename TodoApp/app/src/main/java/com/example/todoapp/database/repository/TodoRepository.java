@@ -41,6 +41,10 @@ public class TodoRepository {
         new insertTodoAsyncTask(mTodoDAO).execute(eTodo);
     }
 
+    public void update(ETodo eTodo){
+        new updateTodoAsyncTask(mTodoDAO).execute(eTodo);
+    }
+
 //    public void delete(int id){
 //        new
 //    }
@@ -54,6 +58,17 @@ public class TodoRepository {
         @Override
         protected Void doInBackground(ETodo... eTodos){
             mTodoDAO.insert(eTodos[0]);
+            return null;
+        }
+    }
+    public static class updateTodoAsyncTask extends AsyncTask<ETodo, Void,Void>{
+        private TodoDAO mTodoDAO;
+        private updateTodoAsyncTask(TodoDAO mTodoDAO){
+            this.mTodoDAO = mTodoDAO;
+        }
+        @Override
+        protected Void doInBackground(ETodo... eTodos){
+            mTodoDAO.update(eTodos[0]);
             return null;
         }
     }

@@ -13,7 +13,8 @@ import java.util.Date;
 @Entity
 public class ETodo {
     @Ignore
-    public ETodo(){}
+    public ETodo() {
+    }
 
     public ETodo(String title, String description, int priority, int status, Date taskDate) {
         this.title = title;
@@ -23,25 +24,24 @@ public class ETodo {
         this.taskDate = taskDate;
     }
 
-    @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    int id;
+    private int id;
 
     @ColumnInfo(name = "title")
-    String title;
+    private String title;
 
     @ColumnInfo(name = "description")
-    String description;
+    private String description;
 
     @ColumnInfo(name = "priority")
-    int priority;
+    private int priority;
 
     @ColumnInfo(name = "status")
-    int status;
+    private int status;
 
     @TypeConverters(DateConverter.class)
     @ColumnInfo(name = "taskDate")
-    Date taskDate;
+    private Date taskDate;
 
     public int getId() {
         return id;

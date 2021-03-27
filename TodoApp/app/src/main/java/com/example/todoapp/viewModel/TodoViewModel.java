@@ -15,9 +15,10 @@ import java.util.List;
 public class TodoViewModel extends AndroidViewModel {
     private TodoRepository mTodoRepository;
     private LiveData<List<ETodo>> allTodos;
-    public TodoViewModel(@NonNull Application application){
+
+    public TodoViewModel(@NonNull Application application) {
         super(application);
-        mTodoRepository=new TodoRepository(application);
+        mTodoRepository = new TodoRepository(application);
         allTodos = mTodoRepository.getAllTodoList();
     }
 
@@ -25,9 +26,12 @@ public class TodoViewModel extends AndroidViewModel {
         return allTodos;
     }
 
-    public void insert(ETodo todo)
-    {
+    public void insert(ETodo todo) {
         mTodoRepository.insert(todo);
+    }
+
+    public void update(ETodo todo) {
+        mTodoRepository.update(todo);
     }
 
 }

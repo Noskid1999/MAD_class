@@ -14,11 +14,11 @@ import java.util.List;
 
 @Dao
 public interface TodoDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ETodo task);
 
-    @Delete
-    void delete(int id);
+//    @Delete
+//    void delete(int id);
 
     @Query("SELECT * FROM etodo WHERE id = :id")
     ETodo get(int id);
@@ -26,7 +26,7 @@ public interface TodoDAO {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(ETodo... todo);
 
-    @Query("SELECT * FROM etodo ORDER BY taskDate, priority desc")
+    @Query("SELECT * FROM etodo ORDER BY taskDate desc,status, priority desc")
     LiveData<List<ETodo>> getAllTodos();
 
 }

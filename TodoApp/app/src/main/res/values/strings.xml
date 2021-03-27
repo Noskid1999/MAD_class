@@ -14,5 +14,6 @@
 
 
     <string name="btn_fta_addTodo">Add Task</string>
+    <string name="btn_fta_cancelTodo">Cancel</string>
 
 </resources>
