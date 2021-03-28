@@ -30,8 +30,16 @@ public class TodoViewModel extends AndroidViewModel {
         mTodoRepository.insert(todo);
     }
 
+    public ETodo get(int id) {
+        return mTodoRepository.get(id);
+    }
+
     public void update(ETodo todo) {
         mTodoRepository.update(todo);
+    }
+
+    public void delete(ETodo eTodo) {
+        mTodoRepository.delete(eTodo);
     }
 
 }

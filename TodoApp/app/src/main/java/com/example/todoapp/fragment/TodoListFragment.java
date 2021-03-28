@@ -55,7 +55,9 @@ public class TodoListFragment extends Fragment {
             @Override
             public void onRightClicked(int position) {
                 super.onRightClicked(position);
-                Toast.makeText(rootView.getContext(), "Button Clicked Right: " + position, Toast.LENGTH_SHORT).show();
+
+                ETodo eTodo = viewModel.getAllTodos().getValue().get(position);
+                viewModel.delete(eTodo);
             }
         });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);

@@ -1,6 +1,8 @@
 package com.example.todoapp.adapter;
 
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todoapp.R;
+import com.example.todoapp.activity.EditActivity;
+import com.example.todoapp.activity.MainActivity;
 import com.example.todoapp.holder.TodoHolder;
 import com.example.todoapp.database.model.ETodo;
 import com.example.todoapp.viewModel.TodoViewModel;
@@ -35,6 +39,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoHolder> {
             public void onClick(View v) {
                 int test = rvTodoList.getChildLayoutPosition(v);
                 ETodo item = eTodoList.get(test);
+
+                Intent startIntent = new Intent(view.getContext(), EditActivity.class);
+                Bundle bundle = new Bundle();
+                startIntent.putExtra("eTodoId", item.getId());
+                view.getContext().startActivity(startIntent,bundle);
             }
         });
         return new TodoHolder(view, parent);

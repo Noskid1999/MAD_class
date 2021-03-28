@@ -1,5 +1,7 @@
 package com.example.todoapp.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,20 +15,19 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.todoapp.R;
 import com.example.todoapp.activity.MainActivity;
 import com.example.todoapp.database.model.ETodo;
+import com.example.todoapp.util.DateConverter;
 import com.example.todoapp.viewModel.TodoViewModel;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class TodoAddFragment extends Fragment {
     View view;
@@ -44,6 +45,7 @@ public class TodoAddFragment extends Fragment {
     int priority;
     long date;
 
+    int todoId;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -52,6 +54,11 @@ public class TodoAddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        eTodo = new ETodo();
+//      Get the eTodoId from the intent if available (i.e. Update eTodo condition)
+        todoId = getActivity().getIntent().getIntExtra("eTodoId", -1);
+
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_todo_add, container, false);
 
@@ -71,7 +78,6 @@ public class TodoAddFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 saveTodo();
-
             }
         });
 
@@ -81,15 +87,14 @@ public class TodoAddFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
+                showAlertCancel();
             }
         });
+        if (todoId != -1) loadUpdateData();
         return view;
     }
 
     void saveTodo() {
-        eTodo = new ETodo();
         Date taskDate = new Date();
 
         try {
@@ -124,13 +129,61 @@ public class TodoAddFragment extends Fragment {
         eTodo.setStatus(cbIsComplete.isChecked() ? 1 : 0);
 
 
-        TodoViewModel viewModel  = new ViewModelProvider(this).get(TodoViewModel.class);
+        TodoViewModel viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         viewModel.insert(eTodo);
 
-        Toast.makeText(getActivity(), "Todo Task Saved",Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent(getActivity(),MainActivity.class);
+        Toast.makeText(getActivity(), "Todo Task Saved", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
 
+    }
+
+    void loadUpdateData() {
+        TodoViewModel viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+//      Check if the id is present
+        if (todoId == -1) return;
+        btnAdd.setText("Update");
+
+        eTodo = viewModel.get(todoId);
+
+        etTitle.setText(eTodo.getTitle());
+        etDescription.setText(eTodo.getDescription());
+        cvDate.setDate(DateConverter.toTimeStamp(eTodo.getTaskDate()));
+        switch (eTodo.getPriority()) {
+            case HIGH_PRIORITY:
+                rgPriority.check(R.id.rb_fta_priority_high);
+                break;
+            case MEDIUM_PRIORITY:
+                rgPriority.check(R.id.rb_fta_priority_medium);
+                break;
+            case LOW_PRIORITY:
+                rgPriority.check(R.id.rb_fta_priority_low);
+                break;
+        }
+        cbIsComplete.setChecked(eTodo.getStatus() == 1 ? true : false);
+    }
+
+    void showAlertCancel() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setMessage(getString(R.string.alert_fta_cancel))
+                .setTitle(getString(R.string.app_name))
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.btn_fta_alert_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(getString(R.string.btn_fta_alert_cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        alertDialog.show();
     }
 
 

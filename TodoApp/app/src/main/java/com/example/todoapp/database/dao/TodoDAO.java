@@ -17,8 +17,8 @@ public interface TodoDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ETodo task);
 
-//    @Delete
-//    void delete(int id);
+    @Delete
+    void delete(ETodo... eTodo);
 
     @Query("SELECT * FROM etodo WHERE id = :id")
     ETodo get(int id);

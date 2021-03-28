@@ -157,14 +157,14 @@ public class SwipeController extends ItemTouchHelper.Callback {
         Paint p = new Paint();
 
         RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidthWithoutPadding, itemView.getBottom());
-        p.setColor(Color.BLUE);
+        p.setColor(Color.GREEN);
         c.drawRoundRect(leftButton, corners, corners, p);
-        drawText("COMPLETE", c, leftButton, p);
+        drawText("COMPLETE", c, leftButton, p, Color.BLACK);
 
         RectF rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
         p.setColor(Color.RED);
         c.drawRoundRect(rightButton, corners, corners, p);
-        drawText("DELETE", c, rightButton, p);
+        drawText("DELETE", c, rightButton, p, Color.WHITE);
 
         buttonInstance = null;
         if (buttonShowedState == ButtonsState.LEFT_VISIBLE) {
@@ -175,9 +175,9 @@ public class SwipeController extends ItemTouchHelper.Callback {
         }
     }
 
-    private void drawText(String text, Canvas c, RectF button, Paint p) {
-        float textSize = 60;
-        p.setColor(Color.WHITE);
+    private void drawText(String text, Canvas c, RectF button, Paint p, int color) {
+        float textSize = 40;
+        p.setColor(color);
         p.setAntiAlias(true);
         p.setTextSize(textSize);
 

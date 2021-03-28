@@ -37,38 +37,61 @@ public class TodoRepository {
         this.allTodoList = allTodoList;
     }
 
-    public void insert(ETodo eTodo){
+    public void insert(ETodo eTodo) {
         new insertTodoAsyncTask(mTodoDAO).execute(eTodo);
     }
 
-    public void update(ETodo eTodo){
+    public ETodo get(int id) {
+        return mTodoDAO.get(id);
+    }
+
+    public void update(ETodo eTodo) {
         new updateTodoAsyncTask(mTodoDAO).execute(eTodo);
     }
 
-//    public void delete(int id){
-//        new
-//    }
+    public void delete(ETodo eTodo) {
+        new deleteTodoAysncTask(mTodoDAO).execute(eTodo);
+    }
 
 
-    public static class insertTodoAsyncTask extends AsyncTask<ETodo, Void,Void>{
+    public static class insertTodoAsyncTask extends AsyncTask<ETodo, Void, Void> {
         private TodoDAO mTodoDAO;
-        private insertTodoAsyncTask(TodoDAO mTodoDAO){
+
+        private insertTodoAsyncTask(TodoDAO mTodoDAO) {
             this.mTodoDAO = mTodoDAO;
         }
+
         @Override
-        protected Void doInBackground(ETodo... eTodos){
+        protected Void doInBackground(ETodo... eTodos) {
             mTodoDAO.insert(eTodos[0]);
             return null;
         }
     }
-    public static class updateTodoAsyncTask extends AsyncTask<ETodo, Void,Void>{
+
+    public static class updateTodoAsyncTask extends AsyncTask<ETodo, Void, Void> {
         private TodoDAO mTodoDAO;
-        private updateTodoAsyncTask(TodoDAO mTodoDAO){
+
+        private updateTodoAsyncTask(TodoDAO mTodoDAO) {
             this.mTodoDAO = mTodoDAO;
         }
+
         @Override
-        protected Void doInBackground(ETodo... eTodos){
+        protected Void doInBackground(ETodo... eTodos) {
             mTodoDAO.update(eTodos[0]);
+            return null;
+        }
+    }
+
+    private static class deleteTodoAysncTask extends AsyncTask<ETodo, Void, Void> {
+        private TodoDAO mTodoDao;
+
+        private deleteTodoAysncTask(TodoDAO todoDAO) {
+            mTodoDao = todoDAO;
+        }
+
+        @Override
+        protected Void doInBackground(ETodo... eTodos) {
+            mTodoDao.delete(eTodos[0]);
             return null;
         }
     }

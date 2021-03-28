@@ -18,7 +18,8 @@ public abstract class TodoRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (TodoRoomDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TodoRoomDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TodoRoomDatabase.class, DB_NAME)
+                            .allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
                 }
             }
