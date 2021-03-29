@@ -4,7 +4,7 @@ TodoApp is a simple app which allows user to create todo tasks, set status and p
 
 ## Installation
 
-Use git clone to download the project. Then, you can open the project through Android Studio.
+Use git clone to download the project. Then, you can open the project TodoApp through Android Studio.
 
 ```bash
 git clone https://github.com/Noskid1999/MAD_class
