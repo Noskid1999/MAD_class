@@ -10,14 +10,15 @@ Use git clone to download the project. Then, you can open the project through An
 git clone https://github.com/Noskid1999/MAD_class
 ```
 ## App Screenshots
-<img src="https://i.ibb.co/PY4tnH8/splash-screen.png" width="200" />
-<img src="https://i.ibb.co/GsJRV6R/login-screen.png" width="200" />
-<img src="https://i.ibb.co/Zd00dqQ/main-screen.png" width="200" />
-<img src="https://i.ibb.co/bdKKFcv/add-todo-screen.png" width="200" />
-<img src="https://i.ibb.co/TqQGQ1L/update-todo-screen.png" width="200" />
-<img src="https://i.ibb.co/d5v1SQr/main-menu-open-screen.png" width="200" />
-<img src="https://i.ibb.co/prb7vtw/delete-all-confirmation.png" width="200" />
-
+<p float="left">
+  <img src="https://i.ibb.co/PY4tnH8/splash-screen.png" width="200" />
+  <img src="https://i.ibb.co/GsJRV6R/login-screen.png" width="200" />
+  <img src="https://i.ibb.co/Zd00dqQ/main-screen.png" width="200" />
+  <img src="https://i.ibb.co/bdKKFcv/add-todo-screen.png" width="200" />
+  <img src="https://i.ibb.co/TqQGQ1L/update-todo-screen.png" width="200" />
+  <img src="https://i.ibb.co/d5v1SQr/main-menu-open-screen.png" width="200" />
+  <img src="https://i.ibb.co/prb7vtw/delete-all-confirmation.png" width="200" />
+</p>
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
