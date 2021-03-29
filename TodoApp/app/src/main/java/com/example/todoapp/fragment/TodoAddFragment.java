@@ -16,6 +16,7 @@ import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.todoapp.R;
@@ -35,6 +36,7 @@ public class TodoAddFragment extends Fragment {
     private ETodo eTodo;
     private EditText etTitle;
     private EditText etDescription;
+    private TextView tvPriority;
     private RadioGroup rgPriority;
     private CalendarView cvDate;
     private Button btnAdd;
@@ -62,16 +64,19 @@ public class TodoAddFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_todo_add, container, false);
 
-//        Get Texts
+//        Get Text Views
         etTitle = (EditText) view.findViewById(R.id.et_fta_title);
         etDescription = (EditText) view.findViewById(R.id.et_fta_description);
+
+        tvPriority = (TextView)view.findViewById(R.id.tv_fta_priority);
 
         rgPriority = (RadioGroup) view.findViewById(R.id.rg_fta_priority);
 
         cvDate = (CalendarView) view.findViewById(R.id.cv_fta_todoDate);
 
         cbIsComplete = (CheckBox) view.findViewById(R.id.cb_fta_isComplete);
-
+//      Set the is complete checkbox to false for add to do task
+        cbIsComplete.setVisibility(View.INVISIBLE);
         btnAdd = (Button) view.findViewById(R.id.btn_fta_addTodo);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +87,6 @@ public class TodoAddFragment extends Fragment {
         });
 
         btnCancel = (Button) view.findViewById(R.id.btn_fta_cancelTodo);
-
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +113,11 @@ public class TodoAddFragment extends Fragment {
         title = etTitle.getText().toString();
         description = etDescription.getText().toString();
 
-
-        switch (rgPriority.getCheckedRadioButtonId()) {
+        int checkedPriorityRb = rgPriority.getCheckedRadioButtonId();
+        if(checkedPriorityRb==-1){
+            tvPriority.setError("Please choose a priority");
+        }
+        switch (checkedPriorityRb) {
             case R.id.rb_fta_priority_high:
                 priority = HIGH_PRIORITY;
                 break;
@@ -122,12 +129,15 @@ public class TodoAddFragment extends Fragment {
                 break;
         }
 
+        if (title.isEmpty()) {
+            etTitle.setError("Please enter a title");
+            return;
+        }
         eTodo.setTitle(title);
         eTodo.setDescription(description);
         eTodo.setTaskDate(taskDate);
         eTodo.setPriority(priority);
         eTodo.setStatus(cbIsComplete.isChecked() ? 1 : 0);
-
 
         TodoViewModel viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         viewModel.insert(eTodo);
@@ -135,17 +145,19 @@ public class TodoAddFragment extends Fragment {
         Toast.makeText(getActivity(), "Todo Task Saved", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
-
     }
 
     void loadUpdateData() {
         TodoViewModel viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
 //      Check if the id is present
         if (todoId == -1) return;
+//      Set the is complete checkbox to true for update task
+        cbIsComplete.setVisibility(View.VISIBLE);
+//      Set the add to do button to Update
         btnAdd.setText("Update");
-
+//      Load the eTodo task from the database
         eTodo = viewModel.get(todoId);
-
+//      Set the data in the fragment form from the eTodo object
         etTitle.setText(eTodo.getTitle());
         etDescription.setText(eTodo.getDescription());
         cvDate.setDate(DateConverter.toTimeStamp(eTodo.getTaskDate()));

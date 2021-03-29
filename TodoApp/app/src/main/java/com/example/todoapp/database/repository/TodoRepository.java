@@ -53,6 +53,13 @@ public class TodoRepository {
         new deleteTodoAysncTask(mTodoDAO).execute(eTodo);
     }
 
+    public void deleteAll() {
+        new deleteAllTodoAysncTask(mTodoDAO).execute();
+    }
+
+    public void deleteWithStatus(int status) {
+        new deleteWithStatusAysncTask(mTodoDAO).execute(status);
+    }
 
     public static class insertTodoAsyncTask extends AsyncTask<ETodo, Void, Void> {
         private TodoDAO mTodoDAO;
@@ -92,6 +99,34 @@ public class TodoRepository {
         @Override
         protected Void doInBackground(ETodo... eTodos) {
             mTodoDao.delete(eTodos[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAllTodoAysncTask extends AsyncTask<ETodo, Void, Void> {
+        private TodoDAO mTodoDao;
+
+        private deleteAllTodoAysncTask(TodoDAO todoDAO) {
+            mTodoDao = todoDAO;
+        }
+
+        @Override
+        protected Void doInBackground(ETodo... eTodos) {
+            mTodoDao.deleteAll();
+            return null;
+        }
+    }
+
+    private static class deleteWithStatusAysncTask extends AsyncTask<Integer, Void, Void> {
+        private TodoDAO mTodoDao;
+
+        private deleteWithStatusAysncTask(TodoDAO todoDAO) {
+            mTodoDao = todoDAO;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... status) {
+            mTodoDao.deleteWithStatus(status[0]);
             return null;
         }
     }

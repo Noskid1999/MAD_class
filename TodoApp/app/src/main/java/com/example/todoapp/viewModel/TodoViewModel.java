@@ -42,4 +42,12 @@ public class TodoViewModel extends AndroidViewModel {
         mTodoRepository.delete(eTodo);
     }
 
+    public void deleteAll() {
+        mTodoRepository.deleteAll();
+    }
+
+    public void deleteWithStatus(int status) {
+        mTodoRepository.deleteWithStatus(status);
+    }
+
 }

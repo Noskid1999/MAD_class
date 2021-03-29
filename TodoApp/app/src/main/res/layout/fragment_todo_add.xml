@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/rg_fta_priority" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_fta_priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -55,10 +55,10 @@
             android:layout_height="53dp"
             android:layout_marginTop="12dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/tv_fta_priority"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintStart_toStartOf="@+id/tv_fta_priority"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fta_priority">
 
             <RadioButton
                 android:id="@+id/rb_fta_priority_high"
