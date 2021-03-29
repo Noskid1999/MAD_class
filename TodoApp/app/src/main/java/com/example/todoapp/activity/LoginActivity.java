@@ -34,7 +34,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 email = etEmail.getText().toString();
                 password = etPassword.getText().toString();
-
+                if (email.isEmpty()) {
+                    etEmail.setError(getResources().getString(R.string.empty_email));
+                    return;
+                }
+                if (password.isEmpty()) {
+                    etPassword.setError(getResources().getString(R.string.empty_password));
+                    return;
+                }
                 if (!email.equals("test@gmail.com")) {
                     etEmail.setError(getResources().getString(R.string.invalid_email));
                     return;
