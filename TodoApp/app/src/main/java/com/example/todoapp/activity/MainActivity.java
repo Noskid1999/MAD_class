@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.account:
-                        Toast.makeText(MainActivity.this, "My Account", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Delete All", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Delete Completed", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.mycart:
-                        Toast.makeText(MainActivity.this, "My Cart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         return true;
