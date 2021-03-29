@@ -10,7 +10,7 @@ Use git clone to download the project. Then, you can open the project through An
 git clone https://github.com/Noskid1999/MAD_class
 ```
 ## App Screenshots
-![](https://ibb.co/mBtSwW7)
+![](https://i.ibb.co/PY4tnH8/splash-screen.png)
 ![](https://ibb.co/q0npRSp)
 ![](https://ibb.co/v1SS10N)
 ![](https://ibb.co/8877b1x)
