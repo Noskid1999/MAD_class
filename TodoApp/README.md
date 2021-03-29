@@ -10,13 +10,13 @@ Use git clone to download the project. Then, you can open the project through An
 git clone https://github.com/Noskid1999/MAD_class
 ```
 ## App Screenshots
-<img src="https://i.ibb.co/PY4tnH8/splash-screen.png" width="100" />
-![](https://ibb.co/q0npRSp)
-![](https://ibb.co/v1SS10N)
-![](https://ibb.co/8877b1x)
-![](https://ibb.co/qFH8HC5)
-![](https://ibb.co/9r0zJqN)
-![](https://ibb.co/vvVFx7q)
+<img src="https://i.ibb.co/PY4tnH8/splash-screen.png" width="200" />
+<img src="https://i.ibb.co/GsJRV6R/login-screen.png" width="200" />
+<img src="https://i.ibb.co/Zd00dqQ/main-screen.png" width="200" />
+<img src="https://i.ibb.co/bdKKFcv/add-todo-screen.png" width="200" />
+<img src="https://i.ibb.co/TqQGQ1L/update-todo-screen.png" width="200" />
+<img src="https://i.ibb.co/d5v1SQr/main-menu-open-screen.png" width="200" />
+<img src="https://i.ibb.co/prb7vtw/delete-all-confirmation.png" width="200" />
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
