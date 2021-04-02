@@ -9,6 +9,22 @@ Use git clone to download the project. Then, you can open the project TodoApp th
 ```bash
 git clone https://github.com/Noskid1999/MAD_class
 ```
+
+## Features
+- Create, list, update and delete todo tasks
+- Swipe to show buttons for task completion or deletion
+- Allows deletion of all todo tasks or all completed tasks
+- User authentication with login state saved
+- Todo Task list sorted by status, date and priority
+
+## Implementations
+- RoomDB with seeder
+- Fragments
+- RecyclerView
+- Confirmation alert for all major operations
+- RecyclerView containing title, description, date and completion status
+
+
 ## App Screenshots
 <p float="left">
   <img src="https://i.ibb.co/PY4tnH8/splash-screen.png" width="200" />
