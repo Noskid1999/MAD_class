@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        android:isScrollContainer="true"
+        tools:context=".fragment.TodoAddFragment">
+
+        <EditText
+            android:id="@+id/et_fta_title"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="50dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/et_fta_title_placeholder"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_fta_description"
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="50dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/et_fta_description_placeholder"
+            android:inputType="textMultiLine|textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/et_fta_title"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/et_fta_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_fta_title" />
+
+        <TextView
+            android:id="@+id/tv_fta_priority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:text="@string/tv_fta_priority_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/et_fta_description"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/et_fta_description"
+            app:layout_constraintTop_toBottomOf="@+id/et_fta_description" />
+
+        <RadioGroup
+            android:id="@+id/rg_fta_priority"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/tv_fta_priority"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_fta_priority"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fta_priority">
+
+            <RadioButton
+                android:id="@+id/rb_fta_priority_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@color/danger"
+                android:checked="true"
+                android:text="@string/rb_fta_priority_high"
+                android:textColor="#000000"
+                app:buttonTint="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_fta_priority_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@color/warning"
+                android:text="@string/rb_fta_priority_medium"
+                android:textColor="#000000"
+                app:buttonTint="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_fta_priority_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@color/success"
+                android:text="@string/rb_fta_priority_low"
+                android:textColor="#000000"
+                app:buttonTint="@color/white" />
+        </RadioGroup>
+
+        <CalendarView
+            android:id="@+id/cv_fta_todoDate"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            app:layout_constraintEnd_toEndOf="@+id/rg_fta_priority"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="@+id/rg_fta_priority"
+            app:layout_constraintTop_toBottomOf="@+id/rg_fta_priority" />
+
+        <CheckBox
+            android:id="@+id/cb_fta_isComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_fta_isComplete"
+            app:layout_constraintEnd_toEndOf="@+id/cv_fta_todoDate"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cv_fta_todoDate"
+            app:layout_constraintTop_toBottomOf="@+id/cv_fta_todoDate" />
+
+        <Button
+            android:id="@+id/btn_fta_addTodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="@string/btn_fta_addTodo"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/success"
+            app:layout_constraintEnd_toEndOf="@+id/cb_fta_isComplete"
+            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintStart_toStartOf="@+id/cb_fta_isComplete"
+            app:layout_constraintTop_toBottomOf="@+id/cb_fta_isComplete" />
+
+        <Button
+            android:id="@+id/btn_fta_cancelTodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="@string/btn_fta_cancelTodo"
+            app:backgroundTint="@color/danger"
+            app:layout_constraintEnd_toEndOf="@+id/cb_fta_isComplete"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/btn_fta_addTodo"
+            app:layout_constraintTop_toBottomOf="@+id/cb_fta_isComplete" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

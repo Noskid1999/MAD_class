@@ -35,8 +35,13 @@ public class TodoHolder extends RecyclerView.ViewHolder {
         tvDate.setText(sdf.format(eTodo.getTaskDate()));
         tvDescription.setText(eTodo.getDescription());
 
-        if(eTodo.getStatus() == 1){
+        if (eTodo.getStatus() == 1) {
             tvTitle.setPaintFlags(tvTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            tvTitle.setTextColor(itemView.getResources().getColor(R.color.muted));
+
+
+            tvDate.setPaintFlags(tvTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            tvDate.setTextColor(itemView.getResources().getColor(R.color.muted));
         }
 
         itemView.setClipToOutline(true);

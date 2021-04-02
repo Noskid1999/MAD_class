@@ -11,4 +11,5 @@
     <color name="warning">#FFC107</color>
     <color name="success">#28A745</color>
     <color name="danger">#DC3545</color>
+    <color name="muted">#7D858C</color>
 </resources>
