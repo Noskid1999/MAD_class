@@ -16,6 +16,8 @@ git clone https://github.com/Noskid1999/MAD_class
   <img src="https://i.ibb.co/Zd00dqQ/main-screen.png" width="200" />
   <img src="https://i.ibb.co/bdKKFcv/add-todo-screen.png" width="200" />
   <img src="https://i.ibb.co/TqQGQ1L/update-todo-screen.png" width="200" />
+  <img src="https://i.ibb.co/VSs2VMn/complete-task.png" width="200" />
+  <img src="https://i.ibb.co/HDprj1Y/delete-task.png" width="200" />
   <img src="https://i.ibb.co/d5v1SQr/main-menu-open-screen.png" width="200" />
   <img src="https://i.ibb.co/prb7vtw/delete-all-confirmation.png" width="200" />
 </p>
